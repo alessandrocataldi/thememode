@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:thememode/provider/theme_provider.dart';
-import 'package:thememode/scaffold.dart/home.dart';
-import 'package:thememode/scaffold.dart/settings.dart';
-import 'package:thememode/widget/change_theme_button.dart';
+import 'package:thememode/scaffold/home.dart';
+
+import 'package:thememode/scaffold/settings.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

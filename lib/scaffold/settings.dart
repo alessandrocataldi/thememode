@@ -18,10 +18,15 @@ class _SettingsState extends State<Settings> {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
         ? 'dark'
         : 'light';
+    Icon iconMode =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? const Icon(Icons.dark_mode)
+            : const Icon(Icons.light_mode);
     return Scaffold(
       body: Column(
         children: [
           ListTile(
+            leading: iconMode,
             title: const Text("Dark theme"),
             subtitle: Text("Your theme is $text"),
             trailing: const ChangeThemeButtonWidget(),

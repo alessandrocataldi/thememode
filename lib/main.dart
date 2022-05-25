@@ -16,6 +16,7 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // OLD
   // @override
   // Widget build(BuildContext context) {
   //   return MaterialApp(
@@ -58,16 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //  indentify theme mode
-    final text = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? "Dark Theme"
-        : "Light Theme";
+    final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? 'Dark Theme'
+        : 'Light Theme';
 
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         centerTitle: false,
         title: Text(widget.title),
-        actions: [
+        actions: const [
           ChangeThemeButtonWidget(),
         ],
       ),
@@ -75,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Scaffold = $text"),
+            Text(text),
           ],
         ),
       ),

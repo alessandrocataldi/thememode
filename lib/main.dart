@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:thememode/provider/theme_provider.dart';
+import 'package:thememode/scaffold.dart/home.dart';
+import 'package:thememode/scaffold.dart/settings.dart';
 import 'package:thememode/widget/change_theme_button.dart';
 
 Future main() async {
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.themeMode,
             theme: CustomTheme.lightTheme,
             darkTheme: CustomTheme.darkTheme,
-            home: const MyHomePage(title: "Title"),
+            home: const MyHomePage(title: "ThemeMode"),
           );
         },
       );
@@ -56,29 +58,54 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectIndex = 0;
+
+  static const List<Widget> _widgetOptions = [Home(), Settings()];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    //  indentify theme mode
-    final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-        ? 'Dark Theme'
-        : 'Light Theme';
+    // //  indentify theme mode
+    // final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+    //     ? 'Dark Theme'
+    //     : 'Light Theme';
 
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         centerTitle: false,
         title: Text(widget.title),
-        actions: const [
-          ChangeThemeButtonWidget(),
-        ],
+        // actions: const [
+        //   ChangeThemeButtonWidget(),
+        // ],
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(text),
-          ],
-        ),
+        child: _widgetOptions.elementAt(_selectIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: "Home",
+            tooltip: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            activeIcon: Icon(Icons.settings),
+            label: "Settings",
+            tooltip: "Settings",
+          ),
+        ],
+        currentIndex: _selectIndex,
+        onTap: _onItemTapped,
       ),
     );
   }

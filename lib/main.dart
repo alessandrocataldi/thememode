@@ -70,19 +70,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // //  indentify theme mode
-    // final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-    //     ? 'Dark Theme'
-    //     : 'Light Theme';
-
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         centerTitle: false,
         title: Text(widget.title),
-        // actions: const [
-        //   ChangeThemeButtonWidget(),
-        // ],
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.accessibility_new),
+          )
+        ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectIndex),

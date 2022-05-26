@@ -18,6 +18,7 @@ class _SettingsState extends State<Settings> {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
         ? 'dark'
         : 'light';
+    // change icon on leading listtile in use
     Icon iconMode =
         Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
             ? const Icon(Icons.dark_mode)
@@ -31,6 +32,7 @@ class _SettingsState extends State<Settings> {
             subtitle: Text("Your theme is $text"),
             trailing: const ChangeThemeButtonWidget(),
           ),
+          const Divider(),
         ],
       ),
     );

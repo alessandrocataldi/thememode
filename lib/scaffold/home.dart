@@ -17,14 +17,36 @@ class _HomeState extends State<Home> {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
         ? 'Dark Theme'
         : 'Light Theme';
+    Icon iconMode =
+        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+            ? const Icon(Icons.dark_mode)
+            : const Icon(Icons.light_mode);
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(text),
-          ],
-        ),
+      body: Column(
+        children: [
+          ListTile(
+            leading: iconMode,
+            title: const Text("Dark theme"),
+            subtitle: Text("Your theme is $text"),
+          ),
+          const Divider(),
+          const ListTile(
+            title: Text("Title"),
+            subtitle: Text("Subtitle"),
+            leading: Icon(Icons.favorite),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text("Title"),
+            subtitle: const Text("Subtitle"),
+            leading: const Icon(Icons.favorite),
+            trailing: ElevatedButton(
+              onPressed: () {},
+              child: const Text("Button"),
+            ),
+          ),
+        ],
       ),
     );
   }
